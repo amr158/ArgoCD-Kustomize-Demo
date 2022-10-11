@@ -1,0 +1,9 @@
+bases:
+- ../../base
+patchesStrategicMerge:
+  - backend-deployment-patch.yaml
+  - backend-service-patch.yaml
+images:
+- name: trnproj1.azurecr.io/backend@sha256
+  newName: amr158/argocd-demo-backend
+  newTag: 0.0.0

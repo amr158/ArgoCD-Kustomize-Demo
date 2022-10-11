@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  backend-dep
+  namespace: Demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-dep
+  template:
+    metadata:
+      labels:
+        app: backend-dep
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: backend
+          image: trnproj1.azurecr.io/backend@sha256
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          securityContext:
+            runAsUser: 11000
+            runAsGroup: 11000
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true 
+            capabilities:
+              drop: ["NET_RAW", "SYS_TIME"]
