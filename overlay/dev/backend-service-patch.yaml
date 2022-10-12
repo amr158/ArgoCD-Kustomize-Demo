@@ -4,4 +4,4 @@ metadata:
   name: backend-svc
   namespace: demo-app
 spec:
-  type: LoadBalancer
+  type: NodePort
