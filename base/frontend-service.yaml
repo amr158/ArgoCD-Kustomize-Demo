@@ -6,7 +6,6 @@ metadata:
 spec:
   ports:
     - port: 80
-      nodePort: 31215
       targetPort: 8080
       protocol: TCP
   selector:

@@ -4,4 +4,4 @@ metadata:
   name: frontend-service
   namespace: demo-app
 spec:
-  type: NodePort
+  type: ClusterIP
