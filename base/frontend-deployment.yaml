@@ -1,71 +1,22 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name:  frontend-dep
-#   namespace: demo-app
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       app: frontend-dep
-#   template:
-#     metadata:
-#       labels:
-#         app: frontend-dep
-#     spec:
-#       automountServiceAccountToken: false
-#       securityContext:
-#         seccompProfile:
-#           type: RuntimeDefault
-#       containers:
-#         - name: frontend
-#           image: "trnproj1.azurecr.io/frontend@sha256"
-#           imagePullPolicy: Always
-#           ports:
-#             - name: http
-#               containerPort: 8080
-#           livenessProbe:
-#             httpGet:
-#               path: /
-#               port: http
-#           readinessProbe:
-#             httpGet:
-#               path: /
-#               port: http
-#           volumeMounts:
-#             - mountPath: /var/run
-#               name: tmpfs-1
-#             - mountPath: /var/cache/nginx
-#               name: tmpfs-2
-#           securityContext:
-#             readOnlyRootFilesystem: true
-#             allowPrivilegeEscalation: false
-#             runAsUser: 11000
-#             runAsGroup: 11000
-#             capabilities:
-#               drop: ["NET_RAW", "SYS_TIME"]
-#       volumes:
-#           - name: tmpfs-1
-#             emptyDir: {}
-#           - name: tmpfs-2
-#             emptyDir: {}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name:  frontend-dep
   namespace: demo-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: frontend-dep
   template:
     metadata:
       labels:
-        app: nginx
+        app: frontend-dep
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: frontend
+          image: "trnproj1.azurecr.io/frontend@sha256"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
