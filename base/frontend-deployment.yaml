@@ -42,8 +42,6 @@ spec:
             allowPrivilegeEscalation: false
             runAsUser: 11000
             runAsGroup: 11000
-            capabilities:
-              drop: ["NET_RAW", "SYS_TIME"]
       volumes:
           - name: tmpfs-1
             emptyDir: {}
