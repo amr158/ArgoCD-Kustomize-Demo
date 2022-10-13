@@ -4,3 +4,4 @@ resources:
 - frontend-deployment.yaml
 - frontend-service.yaml
 - ingress.yaml
+- namespace.yaml
