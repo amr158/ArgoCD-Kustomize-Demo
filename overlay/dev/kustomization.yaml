@@ -12,5 +12,5 @@ images:
   newName: amr158/argocd-demo-backend
   newTag: 0.0.0
 - name: trnproj1.azurecr.io/frontend@sha256
-  newName: amr158/argocd-demo-frontend
-  newTag: 0.3.0
+  newName: nginx
+  newTag: latest
