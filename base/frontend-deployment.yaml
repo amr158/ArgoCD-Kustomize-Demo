@@ -13,10 +13,6 @@ spec:
       labels:
         app: frontend-dep
     spec:
-      automountServiceAccountToken: false
-      securityContext:
-        seccompProfile:
-          type: RuntimeDefault
       containers:
         - name: frontend
           image: "trnproj1.azurecr.io/frontend@sha256"
@@ -24,26 +20,11 @@ spec:
           ports:
             - name: http
               containerPort: 8080
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
           volumeMounts:
             - mountPath: /var/run
               name: tmpfs-1
             - mountPath: /var/cache/nginx
               name: tmpfs-2
-          securityContext:
-            readOnlyRootFilesystem: true
-            allowPrivilegeEscalation: false
-            runAsUser: 11000
-            runAsGroup: 11000
-            capabilities:
-              drop: ["NET_RAW", "SYS_TIME"]
       volumes:
           - name: tmpfs-1
             emptyDir: {}
