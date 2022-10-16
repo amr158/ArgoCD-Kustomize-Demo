@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name:  backend-dep
+  namespace: demo-app
 spec:
   replicas: 1
   selector:
@@ -18,7 +19,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: backend
-          image: trnproj1.azurecr.io/backend@sha256
+          image: "trnproj1.azurecr.io/backend@sha256"
           imagePullPolicy: Always
           ports:
             - name: http

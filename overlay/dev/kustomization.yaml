@@ -8,8 +8,11 @@ namespace: dev
   # - backend-service-patch.yaml
   # - frontend-deployment-patch.yaml
   # - frontend-service-patch.yaml
+# add dev label to all resources
 commonLabels:
   env: dev
+
+# define latest images to be used in this env
 images:
 - name: trnproj1.azurecr.io/backend@sha256
   newName: amr158/argocd-demo-backend
