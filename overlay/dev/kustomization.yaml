@@ -15,7 +15,8 @@ commonLabels:
 # define latest images to be used in this env
 images:
   - name: trnproj1.azurecr.io/backend@sha256
-    newName: amr158/argocd-demo-backend
+    # newName: amr158/argocd-demo-backend
+    newName: dockre/argocd-demo-bakcend
     newTag: 0.0.0
     # newName: mcr.microsoft.com/dotnet/samples
     # newTag: aspnetapp
