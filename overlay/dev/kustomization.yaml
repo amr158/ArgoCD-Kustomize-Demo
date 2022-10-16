@@ -1,5 +1,8 @@
 bases:
-- ../../base
+  - ../../base
+
+namespace: dev
+
 # patchesStrategicMerge:
   # - backend-deployment-patch.yaml
   # - backend-service-patch.yaml
