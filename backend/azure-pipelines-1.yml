@@ -1,0 +1,68 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- none
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'f5553777-0819-4863-a86f-06059bb22184'
+  imageRepository: 'backend'
+  containerRegistry: 'trnproj1.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  pool: integrant_pool
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+
+  - job: Analysis
+    displayName: Checkov
+    pool: $(pool)
+
+    steps:  
+      - script: docker run --volume $(System.DefaultWorkingDirectory):/backend-chart bridgecrew/checkov --framework helm --directory backend-chart --output junitxml > $(System.DefaultWorkingDirectory)/Checkov-Report-Backend.xml
+        displayName: 'Checkov Static Code Analysis'
+        continueOnError: true
+
+      - script: cat $(System.DefaultWorkingDirectory)/Checkov-Report-Backend.xml
+        displayName: Test Results
+      - task: PublishTestResults@2
+        displayName: 'Publish Checkov Test Result' 
+        inputs:
+          testResultsFormat: 'JUnit'
+          testResultsFiles: '$(System.DefaultWorkingDirectory)/Checkov-Report-Backend.xml'
+          testRunTitle: 'Checkov Scan Backend'
+          searchFolder: '$(System.DefaultWorkingDirectory)'
+          publishRunAttachments: true
+          failTaskOnFailedTests: false
+          mergeTestResults: false
+
+  - job: Build
+    displayName: Build
+    pool: $(pool)
+    steps:
+
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: custom
+        custom: tool
+        arguments: install --tool-path . nbgv --ignore-failed-sources
+      displayName: Install NBGV tool
+
+    - script: ./nbgv cloud -c -a
+      displayName: Set Version
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(GitBuildVersion)
