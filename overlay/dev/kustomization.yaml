@@ -17,9 +17,9 @@ images:
   - name: trnproj1.azurecr.io/backend@sha256
     # newName: amr158/argocd-demo-frontend
     # newName: amr158/argocd-demo-backend
-    newName: mcr.microsoft.com/dotnet/samples:aspnetapp
+    newName: mcr.microsoft.com/dotnet/samples
     # newTag: 0.0.0
-    newTag: 0.1.0
+    newTag: aspnetapp
   - name: trnproj1.azurecr.io/frontend@sha256
     newName: amr158/argocd-demo-frontend
     newTag: 0.4.0
