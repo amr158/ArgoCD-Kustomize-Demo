@@ -3,8 +3,8 @@ bases:
 patchesStrategicMerge:
   - backend-deployment-patch.yaml
   - backend-service-patch.yaml
-  - frontend-deployment-patch.yaml
-  - frontend-service-patch.yaml
+  # - frontend-deployment-patch.yaml
+  # - frontend-service-patch.yaml
 commonLabels:
   env: dev
 images:
