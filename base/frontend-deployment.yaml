@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  frontend-dep
+  name: frontend-dep
 spec:
   replicas: 1
   selector:
@@ -12,14 +12,14 @@ spec:
       labels:
         app: frontend-dep
     spec:
-      automountServiceAccountToken: false
-      securityContext:
-        seccompProfile:
-          type: RuntimeDefault
+      # automountServiceAccountToken: false
+      # securityContext:
+      #   seccompProfile:
+      #     type: RuntimeDefault
       containers:
         - name: frontend
           image: "trnproj1.azurecr.io/frontend@sha256"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             - name: http
               containerPort: 8080
