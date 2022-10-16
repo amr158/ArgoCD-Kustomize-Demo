@@ -32,11 +32,11 @@ spec:
             httpGet:
               path: /
               port: http
-          securityContext:
-            runAsUser: 11000
-            runAsGroup: 11000
-            readOnlyRootFilesystem: true
-            allowPrivilegeEscalation: false
-            runAsNonRoot: true 
-            capabilities:
-              drop: ["NET_RAW", "SYS_TIME"]
+          # securityContext:
+          #   runAsUser: 11000
+          #   runAsGroup: 11000
+          #   readOnlyRootFilesystem: true
+          #   allowPrivilegeEscalation: false
+          #   runAsNonRoot: true 
+          #   capabilities:
+          #     drop: ["NET_RAW", "SYS_TIME"]
