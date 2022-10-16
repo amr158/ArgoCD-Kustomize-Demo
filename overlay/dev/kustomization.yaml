@@ -16,10 +16,10 @@ commonLabels:
 images:
   - name: trnproj1.azurecr.io/backend@sha256
     # newName: amr158/argocd-demo-frontend
-    # newName: amr158/argocd-demo-backend
-    newName: mcr.microsoft.com/dotnet/samples
-    # newTag: 0.0.0
-    newTag: aspnetapp
+    newName: amr158/argocd-demo-backend
+    newTag: 0.0.0
+    # newName: mcr.microsoft.com/dotnet/samples
+    # newTag: aspnetapp
   - name: trnproj1.azurecr.io/frontend@sha256
     newName: amr158/argocd-demo-frontend
     newTag: 0.4.0
