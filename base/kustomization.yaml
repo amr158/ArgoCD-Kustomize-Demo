@@ -1,5 +1,7 @@
 
 resources:
   - namespace.yaml
-  - ./backend
-  - ./frontend
+  # - ./backend
+  # - ./frontend
+
+  - ./apps
