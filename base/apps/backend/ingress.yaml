@@ -3,8 +3,7 @@ kind: Ingress
 metadata:
   name: ingress-be
   annotations:
-    ingress.kubernetes.io/ssl-redirect: true
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
   - http:
