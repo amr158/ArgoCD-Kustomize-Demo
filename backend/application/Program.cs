@@ -10,6 +10,7 @@ app.UseCors(x => x.AllowAnyMethod()
 
 
 
-app.MapGet("/", () => "Hello From Integrant!");
+app.MapGet("/", () => "Hello From Integrant Version: 0.0.0");
+// app.MapGet("/", () => "Hello From Integrant Version: 0.0.1");
 
 app.Run();
