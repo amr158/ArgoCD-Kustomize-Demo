@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: nginx
-  replicas: 2 # tells deployment to run 2 pods matching the template
+  replicas: 1 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
@@ -25,7 +25,7 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: 8080
+      targetPort: 80
       protocol: TCP
   selector:
     app: nginx-deployment
