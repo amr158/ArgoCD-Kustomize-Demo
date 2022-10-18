@@ -4,11 +4,12 @@ metadata:
   name: ingress-be
   annotations:
     ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
       paths:
-      - path: /app1
+      - path: /api
         pathType: Prefix
         backend:
           service:
