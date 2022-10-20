@@ -1,5 +1,5 @@
 resources:
-  - ../../base
+  - ../../base/apps
 
 namespace: dev
 

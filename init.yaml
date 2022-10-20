@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aam-cluster
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  syncPolicy:
+    automated: 
+      selfHeal: true
+  destination:
+    namespace: dev
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    # path: config-aws-dev
+    repoURL: https://github.com/amr158/ArgoCD-Kustomize-Demo
+    # repoURL: github.com/argoproj/argo-events/manifests/cluster-install
+    targetRevision: HEAD
