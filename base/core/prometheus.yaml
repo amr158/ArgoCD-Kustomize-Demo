@@ -10,7 +10,7 @@ spec:
     automated: 
       selfHeal: true
   destination:
-    namespace: dev
+    namespace: monitoring
     server: https://kubernetes.default.svc
   project: default
   source:
