@@ -14,7 +14,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    # path: config-aws-dev
+    path: ./
     repoURL: https://github.com/amr158/ArgoCD-Kustomize-Demo
     # repoURL: github.com/argoproj/argo-events/manifests/cluster-install
     targetRevision: HEAD
