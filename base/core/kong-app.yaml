@@ -1,19 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: elasticsearch
+  name: kong
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: monitoring
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: kong/kong
-    # helm:
-    #   valueFiles:
-    #   - values.yaml
-    # repoURL: https://helm.elastic.co
-    # targetRevision: 7.6.1
+    path: kong
+    repoURL: https://github.com/mikesparr/gcp-cicd-demo-config
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
