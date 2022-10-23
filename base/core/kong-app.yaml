@@ -3,7 +3,12 @@ kind: Application
 metadata:
   name: kong
   namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
+  syncPolicy:
+    automated: 
+      selfHeal: true
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
