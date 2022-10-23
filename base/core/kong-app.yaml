@@ -11,4 +11,4 @@ spec:
   source:
     chart: kong/kong
     repoURL: https://charts.konghq.com
-    targetRevision: 1.4.1
+    targetRevision: 2.13.1
