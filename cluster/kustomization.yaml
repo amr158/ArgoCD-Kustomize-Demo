@@ -1,0 +1,4 @@
+resources:
+  - namespaces.yaml
+  - application-kong-helm.yaml
+  # - prometheus.yaml

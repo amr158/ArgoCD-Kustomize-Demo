@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-bootstrap
+  namespace: argocd
+spec:
+  syncPolicy:
+    automated: {}
+      # selfHeal: true
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: cluster
+    repoURL: https://github.com/amr158/ArgoCD-Kustomize-Demo
+    targetRevision: HEAD

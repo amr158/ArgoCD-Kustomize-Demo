@@ -1,0 +1,57 @@
+
+
+# installation commands
+# kubectl create namespace argocd
+# kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# namespace will be defined by the caller using kustomize edit set namespace ${namespace}
+namespace: argocd
+
+resources:
+# - https://github.com/argoproj/argo-cd//manifests/cluster-install/?timeout=60
+  # - https://github.com/argoproj/argo-cd/blob/master/manifests/install.yaml
+  - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# all manifests for this release in one file. Change the release number to the desired one
+  # - raw.githubusercontent.com/argoproj/argo-cd/v1.8.4/manifests/install.yaml
+
+# using downloaded version v1.5.5 for future reference and fast deployment
+# resources:
+#   - argocd_v1.5.5.yaml
+  # - argocd_v1.5.4.yaml
+  # - argocd_v1.5.3.yaml
+
+#### enable these later to include sops
+# patches: 
+# - patch-argocd-repo-server.yaml
+# - patch-argocd-server.yaml
+
+# # resources:
+# # - ingress-http-kong.yaml # moved to ingress folder
+
+# # - ingress-grpc-kong.yaml
+
+
+# generators:
+#   - ./secret-generator.yaml
+
+
+# # add option to enable ksops plugin. secret-generator.yaml
+# configMapGenerator:
+# - name: argocd-cm
+#   behavior: merge
+#   literals: 
+#   - kustomize.buildOptions="--enable_alpha_plugins" 
+#   files:
+#   - ./config/repositories
+#   - ./config/repository.credentials
+
+# - name: argocd-ssh-known-hosts-cm
+#   behavior: merge
+#   files: 
+#   - ./config/ssh_known_hosts
+
+
+# # images:
+# #   - name: quay.io/argoproj/argocd
+# #     newTag: latest

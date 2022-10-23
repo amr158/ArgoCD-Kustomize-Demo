@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kong
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  syncPolicy:
+    automated: {}
+  destination:
+    namespace: kong
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kong
+    repoURL: https://charts.konghq.com
+    targetRevision: 2.13.1
+    # targetRevision: 1.7.0
+    helm:
+      values: |
+        extraEnv: |
+          - name: KEYCLOAK_HTTP_PORT
+            value: "80"
+          - name: KEYCLOAK_HTTPS_PORT
+            value: "443"
+        proxy:
+          # HTTP plain-text traffic
+          http:
+            enabled: true
+            servicePort: 80
+            containerPort: 80
+          tls:
+            enabled: true
+            servicePort: 443
+            containerPort: 443
+        ingressController:
+          enabled: true
+

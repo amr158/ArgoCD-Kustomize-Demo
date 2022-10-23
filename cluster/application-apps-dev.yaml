@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aam-live-dev
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  syncPolicy:
+    automated: 
+      selfHeal: true
+  destination:
+    namespace: dev
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: overlay/dev
+    repoURL: https://github.com/amr158/ArgoCD-Kustomize-Demo
+    targetRevision: HEAD
