@@ -5,7 +5,8 @@ metadata:
   annotations:
     # ingress.kubernetes.io/ssl-redirect: "true"
     kubernetes.io/ingress.class: kong
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    konghq.com/strip-path: "true"
+    # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
