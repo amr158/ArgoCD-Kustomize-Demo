@@ -36,6 +36,7 @@ kind: Ingress
 metadata:
   name: nginx-ingress
   annotations:
+    kubernetes.io/ingress.class: kong
     # ingress.kubernetes.io/ssl-redirect: "true"
     # nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
