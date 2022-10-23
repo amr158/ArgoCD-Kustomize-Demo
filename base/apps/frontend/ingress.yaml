@@ -4,6 +4,7 @@ metadata:
   name: ingress-fe
   annotations:
     ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ingress.class: kong
 spec:
   rules:
   - http:
