@@ -6,15 +6,14 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
+  syncPolicy:
+    automated: 
+      selfHeal: true
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: kong
-    repoURL: https://github.com/mikesparr/gcp-cicd-demo-config
-    targetRevision: HEAD
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
+    chart: kong
+    repoURL: https://charts.konghq.com
+    targetRevision: 2.13.1
