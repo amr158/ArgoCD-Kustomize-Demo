@@ -13,10 +13,11 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: kong
+    # path: kong/kong
     repoURL: https://charts.konghq.com
     targetRevision: 2.13.1
     # targetRevision: 1.7.0
+    chart: kong/kong
     helm:
       values: |
         extraEnv: |
