@@ -1,4 +1,5 @@
 resources:
   - namespaces.yaml
+  - applicaiton-prometheus.yaml
   - application-kong-helm.yaml
   - application-apps-dev.yaml
