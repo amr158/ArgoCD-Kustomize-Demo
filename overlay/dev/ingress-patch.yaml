@@ -1,0 +1,7 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: the-ingress-name
+spec:
+  rules:
+    - host: *.dev.aam.localhost

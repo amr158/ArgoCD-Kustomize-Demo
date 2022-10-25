@@ -9,7 +9,9 @@ metadata:
     # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
+
+  - host: the-host-value
+    http:
       paths:
       - path: /api
         pathType: ImplementationSpecific

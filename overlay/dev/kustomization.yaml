@@ -17,9 +17,24 @@ images:
   - name: trnproj1.azurecr.io/backend@sha256
     # newName: amr158/argocd-demo-backend
     newName: dockre/argocd-demo-backend
-    newTag: 0.0.1
+    newTag: 0.0.0
+    # newTag: 0.0.1
     # newName: mcr.microsoft.com/dotnet/samples
     # newTag: aspnetapp
   - name: trnproj1.azurecr.io/frontend@sha256
     newName: amr158/argocd-demo-frontend
     newTag: 0.4.0
+
+patches:
+  - target:
+      kind: Ingress
+    patch: |-
+      - op: add
+        path: /spec/rules/0/host
+        value: 'dev.aam.localhost'
+
+
+# patchesStrategicMerge:
+# - ingress-patch.yaml
+
+# patchesJson6902:

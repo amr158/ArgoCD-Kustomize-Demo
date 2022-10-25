@@ -7,7 +7,8 @@ metadata:
     kubernetes.io/ingress.class: kong
 spec:
   rules:
-  - http:
+  - host: the-host-value
+    http:
       paths:
       - path: /
         pathType: Prefix
