@@ -1,0 +1,33 @@
+
+
+# installation commands
+# kubectl create namespace argocd
+# kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# namespace will be defined by the caller using kustomize edit set namespace ${namespace}
+namespace: tick
+
+helmCharts:
+  - name: influxdb2
+    repo: https://helm.influxdata.com/
+    version: 2.1.1
+    releaseName: tick
+    # namespace: tick-stack
+
+  - name: telegraf
+    repo: https://helm.influxdata.com/
+    version: 1.8.22
+    releaseName: tick
+    # namespace: tick-stack
+
+  - name: chronograf
+    repo: https://helm.influxdata.com/
+    version: 1.2.5
+    releaseName: tick
+    # namespace: tick-stack
+
+  - name: kapacitor
+    repo: https://helm.influxdata.com/
+    version: 1.4.6
+    releaseName: tick
+    # namespace: tick-stack

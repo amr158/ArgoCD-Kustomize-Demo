@@ -1,0 +1,35 @@
+trigger:
+- none
+variables:
+ pool: integrant_pool
+
+stages:
+  - stage: Analysis
+    displayName: Anayliz Code stage
+    jobs:
+      - job: BuildSite
+        displayName: Checkov
+        pool: $(pool)
+
+        steps:  
+          - script: docker run --volume $(System.DefaultWorkingDirectory):/backend-chart bridgecrew/checkov --framework helm --directory backend-chart --output junitxml > $(System.DefaultWorkingDirectory)/Checkov-Report-Helm.xml
+          # - script: docker run --volume $(System.DefaultWorkingDirectory):/Docker bridgecrew/checkov --framework dockerfile --directory /Docker --output junitxml > $(System.DefaultWorkingDirectory)/Checkov-Report-Docker.xml
+            displayName: 'Checkov Static Code Analysis'
+            continueOnError: true
+
+          - script: cat $(System.DefaultWorkingDirectory)/Checkov-Report-Helm.xml
+          # - script: cat $(System.DefaultWorkingDirectory)/Checkov-Report-Docker.xml
+            displayName: Test Results
+          - task: PublishTestResults@2
+            displayName: 'Publish Checkov Test Result' 
+            inputs:
+              testResultsFormat: 'JUnit'
+              # testResultsFiles: '$(System.DefaultWorkingDirectory)/Checkov-Report-Docker.xml'
+              # testRunTitle: 'Checkov Scan Docker'
+              testResultsFiles: '$(System.DefaultWorkingDirectory)/Checkov-Report-Helm.xml'
+              testRunTitle: 'Checkov Scan Helm'
+              searchFolder: '$(System.DefaultWorkingDirectory)'
+              publishRunAttachments: true
+              failTaskOnFailedTests: false
+              mergeTestResults: false
+          

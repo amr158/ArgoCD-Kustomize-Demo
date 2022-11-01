@@ -35,6 +35,12 @@ resources:
 # generators:
 #   - ./secret-generator.yaml
 
+# add --enable-helm to kustomize options
+configMapGenerator:
+- name: argocd-cm
+  behavior: merge
+  literals: 
+  - kustomize.buildOptions="--enable-helm" 
 
 # # add option to enable ksops plugin. secret-generator.yaml
 # configMapGenerator:

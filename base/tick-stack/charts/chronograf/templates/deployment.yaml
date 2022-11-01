@@ -1,0 +1,246 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "chronograf.fullname" . }}
+  labels:
+    {{- if eq "true" (include "chronograf.legacyLabels" .) }}
+    app: {{ template "chronograf.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    {{- end }}
+    {{- include "chronograf.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.service.replicas }}
+  strategy:
+    type: {{ .Values.updateStrategy.type }}
+    {{- if eq .Values.updateStrategy.type "Recreate" }}
+    rollingUpdate: null
+    {{- end }}
+  selector:
+    matchLabels:
+      {{- if eq "true" (include "chronograf.legacyLabels" .) }}
+      app: {{ template "chronograf.fullname" . }}
+      {{- end }}
+      {{- include "chronograf.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- if eq "true" (include "chronograf.legacyLabels" .) }}
+        app: {{ template "chronograf.fullname" . }}
+        {{- end }}
+        {{- include "chronograf.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+{{- range $key, $value := .Values.env }}
+        - name: "{{ $key }}"
+          value: "{{ $value }}"
+{{- end }}
+{{- if .Values.oauth.enabled }}
+        - name: TOKEN_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: token_secret
+{{- if .Values.oauth.use_id_token }}
+        - name: USE_ID_TOKEN
+          value: "true"
+        - name: JWKS_URL
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: jwks_url
+{{- end }}
+{{- if .Values.oauth.github.enabled }}
+        - name: GH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: gh_client_id
+        - name: GH_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: gh_client_secret
+        - name: GH_ORGS
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: gh_orgs
+{{- end }}
+{{- if .Values.oauth.heroku.enabled }}
+        - name: HEROKU_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: he_client_id
+        - name: HEROKU_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: he_client_secret
+        - name: HEROKU_ORGS
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: he_orgs
+{{- end }}
+{{- if .Values.oauth.google.enabled }}
+        - name: GOOGLE_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: go_client_id
+        - name: GOOGLE_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: go_client_secret
+        - name: GOOGLE_DOMAINS
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: go_domains
+        - name: PUBLIC_URL
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: go_public_url
+{{- end }}
+{{- if .Values.oauth.generic.enabled }}
+{{- if .Values.oauth.generic.name }}
+        - name: GENERIC_NAME
+          value: {{ quote .Values.oauth.generic.name }}
+{{- end }}
+{{- if .Values.oauth.generic.domains }}
+        - name: GENERIC_DOMAINS
+          value: {{ quote .Values.oauth.generic.domains }}
+{{- end }}
+        - name: GENERIC_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: gen_client_id
+        - name: GENERIC_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: gen_client_secret
+        - name: GENERIC_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: gen_api_key
+        - name: GENERIC_SCOPES
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: gen_scopes
+        - name: PUBLIC_URL
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: gen_public_url
+        - name: GENERIC_AUTH_URL
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: gen_auth_url
+        - name: GENERIC_TOKEN_URL
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: gen_token_url
+        - name: GENERIC_API_URL
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "chronograf.fullname" . }}
+              key: gen_api_url
+{{- end }}
+{{- end }}
+{{- if .Values.influxdb.existingSecret }}
+        - name: INFLUXDB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: influxdb-user
+              name: {{ .Values.influxdb.existingSecret }}
+        - name: INFLUXDB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: influxdb-password
+              name: {{ .Values.influxdb.existingSecret }}
+{{- end }}
+{{- if .Values.envFromSecret }}
+        envFrom:
+        - secretRef:
+            name: {{ .Values.envFromSecret }}
+{{- end }}
+        ports:
+        - containerPort: 8888
+          name: api
+        livenessProbe:
+          httpGet:
+            {{- if .Values.env.BASE_PATH }}
+            path: {{ .Values.env.BASE_PATH }}/ping
+            {{- else }}
+            path: /ping
+            {{- end }}
+            port: api
+        readinessProbe:
+          httpGet:
+            {{- if .Values.env.BASE_PATH }}
+            path: {{ .Values.env.BASE_PATH }}/ping
+            {{- else }}
+            path: /ping
+            {{- end }}
+            port: api
+        {{- if .Values.startupProbe.enabled }}
+        startupProbe:
+          httpGet:
+            {{- if .Values.env.BASE_PATH }}
+            path: {{ .Values.env.BASE_PATH }}/ping
+            {{- else }}
+            path: /ping
+            {{- end }}
+            port: api
+          initialDelaySeconds: {{ .Values.startupProbe.initialDelaySeconds | default 5 }}
+        {{- end }}
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/chronograf
+        {{- range .Values.volumeMounts }}
+        - name: {{ .name }}
+          mountPath: {{ .mountPath }}
+        {{- end }}
+        {{- if .Values.mountPoints }}
+{{ toYaml .Values.mountPoints | indent 8 }}
+        {{- end }}
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+      volumes:
+        - name: data
+        {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ template "chronograf.fullname" . }}
+        {{ else }}
+          emptyDir: {}
+        {{ end }}
+        {{- if .Values.volumes }}
+{{ toYaml .Values.volumes | indent 8 }}
+        {{- end }}
