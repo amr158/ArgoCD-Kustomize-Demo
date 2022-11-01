@@ -23,8 +23,8 @@ resources:
 
 #### enable these later to include sops
 # patches: 
-# - patch-argocd-repo-server.yaml
 # - patch-argocd-server.yaml
+# - patch-argocd-repo-server.yaml
 
 # # resources:
 # # - ingress-http-kong.yaml # moved to ingress folder
@@ -41,6 +41,11 @@ configMapGenerator:
   behavior: merge
   literals: 
   - kustomize.buildOptions="--enable-helm" 
+  - timeout.reconciliation=300s
+- name: argocd-cmd-params-cm
+  behavior: merge
+  literals: 
+  - server.insecure="true"
 
 # # add option to enable ksops plugin. secret-generator.yaml
 # configMapGenerator:
