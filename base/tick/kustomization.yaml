@@ -16,8 +16,8 @@ helmCharts:
 
   - name: telegraf
     repo: https://helm.influxdata.com/
-    # version: 1.8.22
-    version: 1.8.20
+    version: 1.8.22
+    # version: 1.8.20
     releaseName: tick
     # namespace: tick-stack
 
@@ -32,3 +32,10 @@ helmCharts:
     version: 1.4.6
     releaseName: tick
     # namespace: tick-stack
+
+
+images:
+  - name: telegraf:-1.24-alpine
+    # newName: amr158/argocd-demo-backend
+    newName: arm64v8/telegraf
+    newTag: : 1.24-alpine
