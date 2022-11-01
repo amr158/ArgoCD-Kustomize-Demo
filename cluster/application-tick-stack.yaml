@@ -14,6 +14,6 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: base/tick-stack
+    path: base/tick
     repoURL: https://github.com/amr158/ArgoCD-Kustomize-Demo
     targetRevision: HEAD
