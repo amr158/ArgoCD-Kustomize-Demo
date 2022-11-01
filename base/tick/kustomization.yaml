@@ -16,8 +16,8 @@ helmCharts:
 
   - name: telegraf
     repo: https://helm.influxdata.com/
-    version: 1.8.22
-    # version: 1.8.20
+    # version: 1.8.22
+    version: 1.8.20
     releaseName: tick
     # namespace: tick-stack
 
