@@ -47,4 +47,29 @@ spec:
             name: argocd-server
             port:
               number: 80
-             
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: influxdb-ing
+  namespace: tick
+  annotations:
+    # ingress.kubernetes.io/ssl-redirect: "true"
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    kubernetes.io/ingress.class: kong
+    # konghq.com/strip-path: "true"
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+
+  - host: influxdb.aam.localhost
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: tick-influxdb2
+            port:
+              number: 80

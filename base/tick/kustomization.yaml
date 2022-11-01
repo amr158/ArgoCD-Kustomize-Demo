@@ -12,6 +12,9 @@ helmCharts:
     repo: https://helm.influxdata.com/
     version: 2.1.1
     releaseName: tick
+    valuesInline:
+      password: "admin" 
+      token: "admin"
     # namespace: tick-stack
 
   - name: telegraf
