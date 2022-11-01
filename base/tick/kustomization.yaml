@@ -35,7 +35,6 @@ helmCharts:
 
 
 images:
-  - name: telegraf:-1.24-alpine
-    # newName: amr158/argocd-demo-backend
+  - name: telegraf
     newName: arm64v8/telegraf
-    newTag: : 1.24-alpine
+    # newTag: 1.24-alpine
