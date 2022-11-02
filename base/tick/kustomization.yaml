@@ -38,8 +38,10 @@ helmCharts:
     version: 1.4.6
     releaseName: tick
     valuesInline:
-      influxURL: http://tick-influxdb2.tick:80
+      influxURL: http://tick-influxdb2.tick
       persistence.enabled: "false"
+      influxdb-user: admin 
+      influxdb-password: password
 
 secretGenerator:
 - name: influxdb-auth
