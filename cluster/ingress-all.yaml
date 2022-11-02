@@ -63,13 +63,13 @@ metadata:
 spec:
   rules:
 
-  - host: influxdb.aam.localhost
+  - host: influx.aam.localhost
     http:
       paths:
       - path: /
         pathType: ImplementationSpecific
         backend:
           service:
-            name: tick-influxdb
+            name: tick-influxdb2
             port:
-              number: 8086
+              number: 80
