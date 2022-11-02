@@ -18,7 +18,7 @@ images:
     # newName: amr158/argocd-demo-backend
     newName: dockre/argocd-demo-backend
     newTag: 0.0.1
-    # newTag: 0.0.1
+    # newTag: 0.0.0
     # newName: mcr.microsoft.com/dotnet/samples
     # newTag: aspnetapp
   - name: trnproj1.azurecr.io/frontend@sha256
@@ -31,7 +31,7 @@ patches:
     patch: |-
       - op: add
         path: /spec/rules/0/host
-        value: 'dev.aam.localhost'
+        value: 'dev1.aam.localhost'
 
 
 # patchesStrategicMerge:
