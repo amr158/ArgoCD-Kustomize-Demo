@@ -4,7 +4,7 @@ metadata:
   name:  frontend-dep
   namespace: demo-app
 spec:
-  replicas: 1
+  replicas: 3
   
 
       
