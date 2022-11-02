@@ -8,16 +8,24 @@
 namespace: tick
 
 helmCharts:
-  - name: influxdb2
+  # - name: influxdb2
+  #   repo: https://helm.influxdata.com/
+  #   version: 2.1.1
+  #   releaseName: tick
+  #   valuesInline:
+  #     adminUser:
+  #       existingSecret: influxdb-auth
+  #       # password: admin 
+  #       # token: admin
+  - name: influxdb
     repo: https://helm.influxdata.com/
-    version: 2.1.1
+    version: 4.12.0
     releaseName: tick
     valuesInline:
       adminUser:
         existingSecret: influxdb-auth
         # password: admin 
         # token: admin
-
     # namespace: tick-stack
 
   - name: telegraf
