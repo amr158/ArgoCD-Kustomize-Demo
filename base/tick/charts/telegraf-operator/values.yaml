@@ -9,8 +9,8 @@ classes:
   default: "infra"
   data:
     infra: |
-      [[outputs.influxdb]]
-        urls = ["http://tick-influxdb2.tick:80"]
+      [[outputs.influxdb_v2]]
+        urls = ["http://tick-influxdb2.tick"]
         token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf"
         organization = "demo"
         bucket = "demo"
@@ -21,8 +21,8 @@ classes:
         type = "infra"
 
     default: |
-      [[outputs.influxdb]]
-        urls = ["http://tick-influxdb2.tick:80"]
+      [[outputs.influxdb_v2]]
+        urls = ["http://tick-influxdb2.tick"]
         token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf"
         organization = "demo"
         bucket = "demo"
@@ -33,8 +33,8 @@ classes:
         type = "default"
 
     app: |
-      [[outputs.influxdb]]
-        urls = ["http://tick-influxdb2.tick:80"]
+      [[outputs.influxdb_v2]]
+        urls = ["http://tick-influxdb2.tick"]
         token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf"
         organization = "demo"
         bucket = "demo"
