@@ -8,15 +8,15 @@
 namespace: tick
 
 helmCharts:
-  # - name: influxdb2
-  #   repo: https://helm.influxdata.com/
-  #   version: 2.1.1
-  #   releaseName: tick
-  #   valuesInline:
-  #     adminUser:
-  #       existingSecret: influxdb-auth
-  #       # password: admin 
-  #       # token: admin
+  - name: influxdb2
+    repo: https://helm.influxdata.com/
+    version: 2.1.1
+    releaseName: tick
+    valuesInline:
+      adminUser:
+        existingSecret: influxdb-auth
+        # password: admin 
+        # token: admin
   - name: influxdb
     repo: https://helm.influxdata.com/
     version: 4.12.0
@@ -34,6 +34,13 @@ helmCharts:
     # version: 1.8.20
     releaseName: tick
     # namespace: tick-stack
+    valuesInline:
+      outputs:
+        - influxdb:
+            urls:
+              - http://tick-influxdb.tick:8086
+            database:
+              telegraf
 
   - name: chronograf
     repo: https://helm.influxdata.com/
@@ -46,7 +53,8 @@ helmCharts:
     version: 1.4.6
     releaseName: tick
     valuesInline:
-      influxURL: http://tick-influxdb.tick:8086
+      # influxURL: http://tick-influxdb.tick:8086
+      influxURL: http://tick-influxdb2.tick:8086
       persistence.enabled: "false"
       existingSecret: influxdb-auth
       # influxdb-user: admin 
