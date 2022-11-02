@@ -10,12 +10,39 @@ classes:
   data:
     infra: |
       [[outputs.influxdb]]
-        urls = ["http://influxdb.influxdb:8086"]
+        urls = ["http://tick-influxdb2.tick"]
+        token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf"
+        organization = "demo"
+        bucket = "demo"
       [global_tags]
         env = "ci"
         hostname = "$HOSTNAME"
         nodename = "$NODENAME"
         type = "infra"
+
+    default: |
+      [[outputs.influxdb]]
+        urls = ["http://tick-influxdb2.tick"]
+        token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf"
+        organization = "demo"
+        bucket = "demo"
+      [global_tags]
+        env = "ci"
+        hostname = "$HOSTNAME"
+        nodename = "$NODENAME"
+        type = "default"
+
+    app: |
+      [[outputs.influxdb]]
+        urls = ["http://tick-influxdb2.tick"]
+        token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf"
+        organization = "demo"
+        bucket = "demo"
+      [global_tags]
+        env = "ci"
+        hostname = "$HOSTNAME"
+        nodename = "$NODENAME"
+        type = "app"
 
 certManager:
   enable: false
