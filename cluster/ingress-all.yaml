@@ -72,4 +72,4 @@ spec:
           service:
             name: tick-influxdb
             port:
-              number: 80
+              number: 8086

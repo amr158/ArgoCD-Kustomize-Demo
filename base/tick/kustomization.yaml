@@ -46,7 +46,7 @@ helmCharts:
     version: 1.4.6
     releaseName: tick
     valuesInline:
-      influxURL: http://tick-influxdb2.tick
+      influxURL: http://tick-influxdb.tick:8086
       persistence.enabled: "false"
       existingSecret: influxdb-auth
       # influxdb-user: admin 
