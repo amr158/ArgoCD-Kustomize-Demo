@@ -37,6 +37,8 @@ helmCharts:
     repo: https://helm.influxdata.com/
     version: 1.4.6
     releaseName: tick
+    valuesInline:
+      influxURL: http://tick-influxdb.tick:80
 
 secretGenerator:
 - name: influxdb-auth
