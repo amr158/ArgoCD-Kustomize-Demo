@@ -70,6 +70,6 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: tick-influxdb2
+            name: tick-influxdb
             port:
               number: 80
