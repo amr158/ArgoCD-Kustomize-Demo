@@ -55,3 +55,6 @@ images:
   - name: telegraf
     newName: arm64v8/telegraf
     newTag: "1.24"
+  - name: kapacitor
+    newName: arm64v8/kapacitor
+    newTag: "1.6.4"
