@@ -66,6 +66,9 @@ secretGenerator:
 
 
 images:
+  - name: influxdb
+    newName: arm64v8/influxdb
+    newTag: "1.8.10"
   - name: telegraf
     newName: arm64v8/telegraf
     newTag: "1.24"
