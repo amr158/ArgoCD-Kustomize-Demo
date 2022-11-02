@@ -16,7 +16,6 @@ classes:
         hostname = "$HOSTNAME"
         nodename = "$NODENAME"
         type = "infra"
-
 certManager:
   enable: false
 
