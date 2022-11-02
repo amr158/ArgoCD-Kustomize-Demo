@@ -14,9 +14,9 @@ helmCharts:
     releaseName: tick
     valuesInline:
       adminUser:
-        existingSecret: influxdb-auth
-      # password: admin 
-      # token: admin
+        # existingSecret: influxdb-auth
+        password: admin 
+        token: admin
 
     # namespace: tick-stack
 
