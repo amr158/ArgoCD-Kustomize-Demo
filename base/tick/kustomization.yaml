@@ -39,6 +39,7 @@ helmCharts:
     releaseName: tick
     valuesInline:
       influxURL: http://tick-influxdb.tick:80
+      persistence.enabled: "false"
 
 secretGenerator:
 - name: influxdb-auth
