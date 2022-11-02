@@ -29,19 +29,19 @@ helmCharts:
   #       # token: admin
   #   # namespace: tick-stack
 
-  # - name: telegraf-operator
-  #   repo: https://helm.influxdata.com/
-  #   version: 1.3.10
-  #   # version: 1.8.20
-  #   releaseName: tick
-  #   # namespace: tick-stack
-  #   valuesInline:
-  #     outputs:
-  #       - influxdb:
-  #           urls:
-  #             - http://tick-influxdb.tick:8086
-  #           database:
-  #             telegraf
+  - name: telegraf-operator
+    repo: https://helm.influxdata.com/
+    version: 1.3.10
+    # version: 1.8.20
+    releaseName: tick
+    # namespace: tick-stack
+    valuesInline:
+      outputs:
+        - influxdb:
+            urls:
+              - http://tick-influxdb.tick:8086
+            database:
+              telegraf
 
               
   - name: telegraf
@@ -90,9 +90,9 @@ secretGenerator:
 
 
 images:
-  - name: influxdb
-    newName: arm64v8/influxdb
-    newTag: "1.8.10"
+  # - name: influxdb
+  #   newName: arm64v8/influxdb
+  #   newTag: "1.8.10"
   - name: telegraf
     newName: arm64v8/telegraf
     newTag: "1.24"
