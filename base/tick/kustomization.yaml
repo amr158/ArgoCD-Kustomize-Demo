@@ -17,17 +17,30 @@ helmCharts:
         existingSecret: influxdb-auth
         # password: admin 
         # token: admin
-  - name: influxdb
-    repo: https://helm.influxdata.com/
-    version: 4.12.0
-    releaseName: tick
-    valuesInline:
-      adminUser:
-        existingSecret: influxdb-auth
-        # password: admin 
-        # token: admin
-    # namespace: tick-stack
+  # - name: influxdb
+  #   repo: https://helm.influxdata.com/
+  #   version: 4.12.0
+  #   releaseName: tick
+  #   valuesInline:
+  #     adminUser:
+  #       existingSecret: influxdb-auth
+  #       # password: admin 
+  #       # token: admin
+  #   # namespace: tick-stack
 
+  - name: telegraf-operator
+    repo: https://helm.influxdata.com/
+    version: 1.3.10
+    # version: 1.8.20
+    releaseName: tick
+    # namespace: tick-stack
+    valuesInline:
+      outputs:
+        - influxdb:
+            urls:
+              - http://tick-influxdb.tick:8086
+            database:
+              telegraf
   - name: telegraf
     repo: https://helm.influxdata.com/
     version: 1.8.22
@@ -48,17 +61,17 @@ helmCharts:
     releaseName: tick
     # namespace: tick-stack
 
-  - name: kapacitor
-    repo: https://helm.influxdata.com/
-    version: 1.4.6
-    releaseName: tick
-    valuesInline:
-      # influxURL: http://tick-influxdb.tick:8086
-      influxURL: http://tick-influxdb2.tick:8086
-      persistence.enabled: "false"
-      existingSecret: influxdb-auth
-      # influxdb-user: admin 
-      # influxdb-password: password
+  # - name: kapacitor
+  #   repo: https://helm.influxdata.com/
+  #   version: 1.4.6
+  #   releaseName: tick
+  #   valuesInline:
+  #     # influxURL: http://tick-influxdb.tick:8086
+  #     influxURL: http://tick-influxdb2.tick:8086
+  #     persistence.enabled: "false"
+  #     existingSecret: influxdb-auth
+  #     # influxdb-user: admin 
+  #     # influxdb-password: password
 
 secretGenerator:
 - name: influxdb-auth
