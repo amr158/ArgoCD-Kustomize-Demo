@@ -13,7 +13,7 @@ classes:
         urls = ["http://influxdb.influxdb:8086"]
       [[outputs.influxdb_v2]]
         urls = ["http://tick-influxdb2.tick"]
-        token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf 
+        token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf" 
         organization = "demo"
         bucket = "demo"
       [global_tags]
@@ -24,7 +24,7 @@ classes:
     default: |
       [[outputs.influxdb_v2]]
         urls = ["http://tick-influxdb2.tick"]
-        token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf 
+        token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf" 
         organization = "demo"
         bucket = "demo"
       [global_tags]
@@ -35,7 +35,7 @@ classes:
     app: |
       [[outputs.influxdb_v2]]
         urls = ["http://tick-influxdb2.tick"]
-        token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf 
+        token = "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf" 
         organization = "demo"
         bucket = "demo"
       [global_tags]
