@@ -13,8 +13,10 @@ helmCharts:
     version: 2.1.1
     releaseName: tick
     valuesInline:
-      password: "admin" 
-      token: "admin"
+      existingSecret: influxdb-auth
+      # password: admin 
+      # token: admin
+
     # namespace: tick-stack
 
   - name: telegraf
@@ -34,7 +36,16 @@ helmCharts:
     repo: https://helm.influxdata.com/
     version: 1.4.6
     releaseName: tick
-    # namespace: tick-stack
+
+secretGenerator:
+- name: influxdb-auth
+  # envs:
+  # - foo.env
+  # files:
+  # - longsecret.txt
+  literals:
+  - admin-password="admin"
+  - admin-token="admin"
 
 
 images:

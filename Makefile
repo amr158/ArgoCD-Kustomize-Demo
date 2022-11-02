@@ -33,7 +33,8 @@ get-influxdb-password: ## get the name pod name of argocd-server deployment
 	# in version < 1.8
 	# kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2
 	# get password for version > 1.9
-	kubectl -n tick get secret tick-influxdb2-auth -o jsonpath="{.data.admin-token}" | base64 -d
+# 	kubectl -n tick get secret tick-influxdb2-auth -o jsonpath="{.data.admin-token}" | base64 -d
+	kubectl -n tick get secret tick-influxdb2-auth -o jsonpath="{.data.admin-password}" | base64 -d
 
 download-argocd:	## ping all VMs in ibm cloud with root user
 	kustomize build github.com/argoproj/argo-cd//manifests/cluster-install?ref=${version} > ./base/argocd/argocd_${version}.yaml
