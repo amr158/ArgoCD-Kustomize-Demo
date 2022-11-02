@@ -63,7 +63,7 @@ metadata:
 spec:
   rules:
 
-  - host: influx.aam.localhost
+  - host: influxdb.aam.localhost
     http:
       paths:
       - path: /
