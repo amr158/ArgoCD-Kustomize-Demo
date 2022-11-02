@@ -3,10 +3,10 @@ resources:
 
 namespace: dev
 
-# patchesStrategicMerge:
+patchesStrategicMerge:
   # - backend-deployment-patch.yaml
   # - backend-service-patch.yaml
-  # - frontend-deployment-patch.yaml
+  - frontend-deployment-patch.yaml
   # - frontend-service-patch.yaml
 # add dev label to all resources
 commonLabels:
