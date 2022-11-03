@@ -50,13 +50,14 @@ helmCharts:
     # version: 1.8.20
     releaseName: tick
     # namespace: tick-stack
-    valuesInline:
-      outputs:
-        - influxdb:
-            urls:
-              - http://tick-influxdb2.tick
-            database:
-              telegraf
+    # valuesInline:
+    #   config:
+    #     outputs:
+    #       - influxdb:
+    #           urls:
+    #             - http://tick-influxdb2.tick
+    #           database:
+    #             telegraf
 
   - name: chronograf
     repo: https://helm.influxdata.com/
@@ -93,7 +94,7 @@ configMapGenerator:
 - name: telegraf-output-influxdb2
   behavior: create
   files: 
-    - telegraf-output-influxdb2.conf
+    - influxdb2.conf
 
 images:
   # - name: influxdb
