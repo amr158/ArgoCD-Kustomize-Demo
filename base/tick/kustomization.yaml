@@ -49,7 +49,7 @@ helmCharts:
     releaseName: tick
     valuesInline:
       config:
-        docker_endpoint: "file:///run/containerd/containerd.sock"
+        docker_endpoint: ""
       outputs:
         - influxdb_v2:
             urls:
