@@ -43,7 +43,7 @@ helmCharts:
     #         database:
     #           telegraf
 
-              
+
   - name: telegraf
     repo: https://helm.influxdata.com/
     version: 1.8.22
@@ -54,7 +54,7 @@ helmCharts:
       outputs:
         - influxdb:
             urls:
-              - http://tick-influxdb.tick:8086
+              - http://tick-influxdb2.tick
             database:
               telegraf
 
@@ -88,6 +88,12 @@ secretGenerator:
   - influxdb-user="admin"
   - influxdb-password="password"
 
+
+configMapGenerator:
+- name: telegraf-output-influxdb2
+  behavior: create
+  files: 
+    - telegraf-output-influxdb2.conf
 
 images:
   # - name: influxdb
