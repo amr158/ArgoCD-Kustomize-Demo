@@ -57,8 +57,8 @@ helmCharts:
             name: "telegraf-output-influxdb2"
       mountPoints:
         - name: telegraf-output-influxdb2
-          mountPath: /etc/telegraf/conf.d/
-          subPath: influxdb2.conf
+          mountPath: /etc/
+          subPath: telegraf/conf.d/influxdb2.conf
     #   config:
     #     outputs:
     #       - influxdb:
