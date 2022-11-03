@@ -50,14 +50,15 @@ helmCharts:
     # version: 1.8.20
     releaseName: tick
     # namespace: tick-stack
-    valuesInline:
-      volumes:
-        - name: telegraf-output-influxdb2
-          configMap:
-            name: "telegraf-output-influxdb2"
-      mountPoints:
-        - name: telegraf-output-influxdb2
-          mountPath: /etc/telegraf/conf.d/
+    # valuesInline:
+      # volumes:
+      #   - name: telegraf-output-influxdb2
+      #     configMap:
+      #       name: "telegraf-output-influxdb2"
+      # mountPoints:
+      #   - name: telegraf-output-influxdb2
+      #     mountPath: /etc/telegraf/conf.d/
+
           # subPath: influxdb2.conf
     #   config:
     #     outputs:
