@@ -139,8 +139,8 @@ config:
   outputs:
     - influxdb_v2:
         urls:
-          - "http://tick-influx2.tick.svc"
-        token: "yRBcbJCaqGqxDXbZruVKhjOEZZfjikIf"
+          - "http://tick-influxdb2.tick.svc"
+        token: "MG-YDpI7YR67c9wbxVJNjQB8iOy6yImRO8WkWhsvvPepDxCFZoR1wEEC1T5WRmp7mEz_BKjLV_znCoRL4JpgZg=="
         organization: "demo"
         bucket: "demo"
     # - influxdb:
