@@ -23,14 +23,14 @@ env:
 # An older "volumeMounts" key was previously added which will likely
 # NOT WORK as you expect. Please use this newer configuration.
 
-volumes:
-- name: telegraf-output-influxdb2
-  configMap:
-    name: "telegraf-output-influxdb2"
-mountPoints:
-- name: telegraf-output-influxdb2
-  mountPath: /etc
-  subPath: telegraf/conf.d/influxdb2.conf
+# volumes:
+# - name: telegraf-output-influxdb2
+#   configMap:
+#     name: "telegraf-output-influxdb2"
+# mountPoints:
+# - name: telegraf-output-influxdb2
+#   mountPath: /etc/telegraf/conf.d
+#   subPath: influxdb2.conf
 
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
