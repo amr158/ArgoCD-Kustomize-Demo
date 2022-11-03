@@ -48,6 +48,8 @@ helmCharts:
     # version: 1.8.20
     releaseName: tick
     valuesInline:
+      config:
+        docker_endpoint: "unix:///run/containerd/containerd.sock"
       outputs:
         - influxdb_v2:
             urls:
