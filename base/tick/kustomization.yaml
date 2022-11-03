@@ -50,13 +50,13 @@ helmCharts:
     valuesInline:
       config:
         docker_endpoint: ""
-      outputs:
-        - influxdb_v2:
-            urls:
-              - "http://tick-influxdb2.tick.svc"
-            token: "MG-YDpI7YR67c9wbxVJNjQB8iOy6yImRO8WkWhsvvPepDxCFZoR1wEEC1T5WRmp7mEz_BKjLV_znCoRL4JpgZg=="
-            organization: "demo"
-            bucket: "demo"
+        outputs:
+          - influxdb_v2:
+              urls:
+                - "http://tick-influxdb2.tick.svc"
+              token: "MG-YDpI7YR67c9wbxVJNjQB8iOy6yImRO8WkWhsvvPepDxCFZoR1wEEC1T5WRmp7mEz_BKjLV_znCoRL4JpgZg=="
+              organization: "demo"
+              bucket: "demo"
 
   # - name: telegraf
   #   repo: https://helm.influxdata.com/
