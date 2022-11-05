@@ -102,8 +102,8 @@ secretGenerator:
   # files:
   # - longsecret.txt
   literals:
-  - influxdb-user: "demo" 
-  - influxdb-password: "MG-YDpI7YR67c9wbxVJNjQB8iOy6yImRO8WkWhsvvPepDxCFZoR1wEEC1T5WRmp7mEz_BKjLV_znCoRL4JpgZg=="
+    - influxdb-user = "demo" 
+    - influxdb-password = "MG-YDpI7YR67c9wbxVJNjQB8iOy6yImRO8WkWhsvvPepDxCFZoR1wEEC1T5WRmp7mEz_BKjLV_znCoRL4JpgZg=="
 
 
 configMapGenerator:
