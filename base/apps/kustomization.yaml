@@ -1,6 +1,6 @@
 
 resources:
-  - env.yaml
+  # - env.yaml
   - ./backend
   - ./frontend
 
