@@ -3,15 +3,18 @@ kind: Ingress
 metadata:
   name: chronograf-ing
   namespace: tick
+  labels:
+    type: app
   annotations:
     # nginx.ingress.kubernetes.io/ssl-redirect: "true"
     kubernetes.io/ingress.class: kong
     konghq.com/strip-path: "true"
+    cluster.resource: "true"
     # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
 
-  - host: chrono.aam.localhost
+  - host: chrono
     http:
       paths:
       - path: /
@@ -27,17 +30,20 @@ kind: Ingress
 metadata:
   name: argocd-server-ing
   namespace: argocd
+  labels:
+    type: app
   annotations:
     # ingress.kubernetes.io/ssl-redirect: "true"
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     kubernetes.io/ingress.class: kong
+    cluster.resource: "true"
     # konghq.com/strip-path: "true"
     # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
 
-  - host: argo.aam.localhost
+  - host: argo
     http:
       paths:
       - path: /
@@ -53,17 +59,20 @@ kind: Ingress
 metadata:
   name: influxdb-ing
   namespace: tick
+  labels:
+    type: app
   annotations:
     # ingress.kubernetes.io/ssl-redirect: "true"
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     kubernetes.io/ingress.class: kong
+    cluster.resource: "true"
     # konghq.com/strip-path: "true"
     # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
 
-  - host: influxdb.aam.localhost
+  - host: influxdb
     http:
       paths:
       - path: /

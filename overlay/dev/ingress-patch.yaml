@@ -4,4 +4,4 @@ metadata:
   name: the-ingress-name
 spec:
   rules:
-    - host: *.dev.aam.localhost
+    - host: *.dev.aam.com

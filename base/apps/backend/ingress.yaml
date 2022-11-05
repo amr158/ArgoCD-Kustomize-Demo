@@ -1,7 +1,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
+group: api
 metadata:
   name: ingress-be
+  labels:
+    type: api
   annotations:
     # ingress.kubernetes.io/ssl-redirect: "true"
     kubernetes.io/ingress.class: kong
@@ -10,7 +13,7 @@ metadata:
 spec:
   rules:
 
-  - host: the-host-value
+  - host: ""
     http:
       paths:
       - path: /api

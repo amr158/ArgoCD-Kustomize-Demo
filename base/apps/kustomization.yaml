@@ -1,4 +1,7 @@
 
 resources:
+  - env.yaml
   - ./backend
   - ./frontend
+
+

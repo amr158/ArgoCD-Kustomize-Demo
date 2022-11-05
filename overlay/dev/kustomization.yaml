@@ -1,7 +1,14 @@
 resources:
   - ../../base/apps
+  # - env.yaml
 
 namespace: dev
+
+configMapGenerator:
+  - name: env
+    behavior: replace
+    literals:
+      - domain=dev.aam.com
 
 # patchesStrategicMerge:
 #   - frontend-deployment-patch.yaml
@@ -25,13 +32,41 @@ images:
     newName: amr158/argocd-demo-frontend
     newTag: 0.4.0
 
-patches:
-  - target:
-      kind: Ingress
-    patch: |-
-      - op: add
-        path: /spec/rules/0/host
-        value: 'dev.aam.localhost'
+
+replacements:
+  - source:
+      kind: ConfigMap
+      name: env
+      fieldPath: data.domain
+    targets:
+      - select:
+          kind: Ingress
+          labelSelector: 'type=app'
+        fieldPaths:
+          - spec.rules.*.host
+        options:
+          delimiter: '.' 
+          index: 10
+      - select:
+          kind: Ingress
+          labelSelector: 'type=api'
+        fieldPaths:
+          - spec.rules.*.host
+
+
+
+# patches:
+#   - target:
+#       kind: Ingress
+#       group: api
+#       # annotations.type: api
+#     patch: |-
+#       - op: add
+#         path: /spec/rules/0/host
+#         value: 'dev.aam.localhost'
+
+
+
 
 
 # patchesStrategicMerge:
