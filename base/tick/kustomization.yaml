@@ -83,17 +83,17 @@ helmCharts:
     releaseName: tick
     # namespace: tick-stack
 
-  - name: kapacitor
-    repo: https://helm.influxdata.com/
-    version: 1.4.6
-    releaseName: tick
-    valuesInline:
-      # influxURL: http://tick-influxdb.tick:8086
-      influxURL: http://tick-influxdb2.tick
-      persistence.enabled: "false"
-      existingSecret: influxdb-auth
-      # influxdb-user: "demo" 
-      # influxdb-password: "MG-YDpI7YR67c9wbxVJNjQB8iOy6yImRO8WkWhsvvPepDxCFZoR1wEEC1T5WRmp7mEz_BKjLV_znCoRL4JpgZg=="
+  # - name: kapacitor
+  #   repo: https://helm.influxdata.com/
+  #   version: 1.4.6
+  #   releaseName: tick
+  #   valuesInline:
+  #     # influxURL: http://tick-influxdb.tick:8086
+  #     influxURL: http://tick-influxdb2.tick
+  #     persistence.enabled: "false"
+  #     existingSecret: influxdb-auth
+  #     # influxdb-user: "demo" 
+  #     # influxdb-password: "MG-YDpI7YR67c9wbxVJNjQB8iOy6yImRO8WkWhsvvPepDxCFZoR1wEEC1T5WRmp7mEz_BKjLV_znCoRL4JpgZg=="
 
 secretGenerator:
 - name: influxdb-auth
