@@ -82,3 +82,10 @@ spec:
             name: tick-influxdb2
             port:
               number: 80
+      - path: /api/v2
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: tick-influxdb2
+            port:
+              number: 80
