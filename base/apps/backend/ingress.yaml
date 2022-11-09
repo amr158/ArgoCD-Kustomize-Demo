@@ -14,7 +14,7 @@ spec:
 
   - host: ""
     http:
-    paths:
+      paths:
       - path: /api
         pathType: ImplementationSpecific
         backend:
