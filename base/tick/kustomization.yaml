@@ -93,6 +93,16 @@ helmCharts:
     #   persistence.enabled: "false"
     #   existingSecret: influxdb-auth
 
+  - name: grafana
+    repo: https://grafana.github.io/helm-charts
+    version: 6.43.5
+    releaseName: tick
+    # valuesInline:
+    #   adminUser:
+    #     existingSecret: influxdb-auth
+
+
+
 secretGenerator:
 - name: influxdb-auth
   # envs:

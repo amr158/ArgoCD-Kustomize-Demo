@@ -9,12 +9,12 @@ metadata:
     # nginx.ingress.kubernetes.io/ssl-redirect: "true"
     kubernetes.io/ingress.class: kong
     konghq.com/strip-path: "true"
-    cluster.resource: "true"
+    # cluster.resource: "true"
     # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
 
-  - host: chrono
+  - host: chrono.aam.localhost
     http:
       paths:
       - path: /
@@ -37,13 +37,13 @@ metadata:
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     kubernetes.io/ingress.class: kong
-    cluster.resource: "true"
+    # cluster.resource: "true"
     # konghq.com/strip-path: "true"
     # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
 
-  - host: argo
+  - host: argo.aam.localhost
     http:
       paths:
       - path: /
@@ -66,13 +66,14 @@ metadata:
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     kubernetes.io/ingress.class: kong
-    cluster.resource: "true"
+    # cluster.resource: "true"
+    konghq.com/methods: "GET,POST"
     # konghq.com/strip-path: "true"
     # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
 
-  - host: influxdb
+  - host: influxdb.aam.localhost
     http:
       paths:
       - path: /
@@ -82,10 +83,32 @@ spec:
             name: tick-influxdb2
             port:
               number: 80
-      - path: /api/v2
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ing
+  namespace: tick
+  labels:
+    type: app
+  annotations:
+    # ingress.kubernetes.io/ssl-redirect: "true"
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    kubernetes.io/ingress.class: kong
+    # cluster.resource: "true"
+    # konghq.com/strip-path: "true"
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+
+  - host: grafana.aam.localhost
+    http:
+      paths:
+      - path: /
         pathType: ImplementationSpecific
         backend:
           service:
-            name: tick-influxdb2
+            name: tick-grafana
             port:
               number: 80
