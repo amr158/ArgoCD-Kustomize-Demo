@@ -2,5 +2,5 @@
 resources:
   - deployment.yaml
   - service.yaml
-  # - ingress.yaml
+  - ingress.yaml
   - nginx-deployment.yaml
