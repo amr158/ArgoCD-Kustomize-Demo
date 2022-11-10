@@ -98,8 +98,7 @@ helmCharts:
     version: 6.43.5
     releaseName: tick
     valuesInline:
-      adminPassword:
-        existingSecret: admin
+      adminPassword: admin
 
 
 
