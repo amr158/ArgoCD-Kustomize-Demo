@@ -97,9 +97,9 @@ helmCharts:
     repo: https://grafana.github.io/helm-charts
     version: 6.43.5
     releaseName: tick
-    # valuesInline:
-    #   adminUser:
-    #     existingSecret: influxdb-auth
+    valuesInline:
+      adminPassword:
+        existingSecret: admin
 
 
 
