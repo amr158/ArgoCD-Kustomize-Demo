@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: aam-live-dev
+  name: aam-live-test
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
