@@ -4,6 +4,7 @@ resources:
   - application-kong-helm.yaml
   - application-tick-stack.yaml
   - application-apps-dev.yaml
+  - application-apps-test.yaml
   # - ingress-all.yaml
 
   # - applicaiton-prometheus.yaml
