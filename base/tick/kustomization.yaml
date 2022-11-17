@@ -93,13 +93,19 @@ helmCharts:
     #   persistence.enabled: "false"
     #   existingSecret: influxdb-auth
 
-  - name: grafana
+  # - name: grafana
+  #   repo: https://grafana.github.io/helm-charts
+  #   version: 6.43.5
+  #   releaseName: tick
+  #   valuesInline:
+  #     adminPassword: admin
+
+  - name: loki-stack
     repo: https://grafana.github.io/helm-charts
-    version: 6.43.5
+    version: 2.8.7
     releaseName: tick
     valuesInline:
       adminPassword: admin
-
 
 
 secretGenerator:
