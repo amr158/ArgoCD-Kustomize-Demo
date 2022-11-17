@@ -77,21 +77,21 @@ helmCharts:
   #           url : "http://127.0.0.1:10255" 
 
 
-  - name: chronograf
-    repo: https://helm.influxdata.com/
-    version: 1.2.5
-    releaseName: tick
-    # namespace: tick-stack
+  # - name: chronograf
+  #   repo: https://helm.influxdata.com/
+  #   version: 1.2.5
+  #   releaseName: tick
+  #   # namespace: tick-stack
 
-  - name: kapacitor
-    repo: https://helm.influxdata.com/
-    version: 1.4.6
-    releaseName: tick
-    # valuesInline:
-    #   # influxURL: http://tick-influxdb.tick:8086
-    #   influxURL: http://tick-influxdb2.tick
-    #   persistence.enabled: "false"
-    #   existingSecret: influxdb-auth
+  # - name: kapacitor
+  #   repo: https://helm.influxdata.com/
+  #   version: 1.4.6
+  #   releaseName: tick
+  #   # valuesInline:
+  #   #   # influxURL: http://tick-influxdb.tick:8086
+  #   #   influxURL: http://tick-influxdb2.tick
+  #   #   persistence.enabled: "false"
+  #   #   existingSecret: influxdb-auth
 
   # - name: grafana
   #   repo: https://grafana.github.io/helm-charts
