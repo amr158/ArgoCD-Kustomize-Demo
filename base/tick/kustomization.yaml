@@ -105,7 +105,10 @@ helmCharts:
     version: 2.8.7
     releaseName: tick
     valuesInline:
-      adminPassword: admin
+      promtail:
+        config:
+          clients:
+            - url: http://tick-loki:3100/loki/api/v1/push
 
 
 secretGenerator:
