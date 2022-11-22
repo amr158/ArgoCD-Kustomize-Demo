@@ -1,23 +1,21 @@
 resources:
+  - ../../base/apps
   - env.yaml
-  - namespaces.yaml
-  - application-kong-helm.yaml
-  - application-tick-stack.yaml
-  - application-apps-dev.yaml
-  - application-apps-test.yaml
-  - application-apps-stg.yaml
 
+namespace: stg
 
-  # - ingress-all.yaml
+commonLabels:
+  env: stg
 
-  # - applicaiton-prometheus.yaml
+# define latest images to be used in this env
+images:
+  - name: aam/frontend
+    newName: amr158/argocd-demo-frontend
+    newTag: 0.4.0
 
-
-# configMapGenerator:
-#   - name: env
-#     op: add
-#     literals:
-#       - domain=aam.com
+  - name: aam/backend
+    newName: dockre/argocd-demo-backend
+    newTag: 0.0.1
 
 
 replacements:
@@ -39,3 +37,6 @@ replacements:
           labelSelector: 'type=api'
         fieldPaths:
           - spec.rules.*.host
+
+
+
