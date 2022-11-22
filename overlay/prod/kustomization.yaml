@@ -2,10 +2,10 @@ resources:
   - ../../base/apps
   - env.yaml
 
-namespace: test
+namespace: prod
 
 commonLabels:
-  env: test
+  env: prod
 
 # define latest images to be used in this env
 images:
@@ -15,7 +15,7 @@ images:
 
   - name: aam/backend
     newName: dockre/argocd-demo-backend
-    newTag: 0.0.2
+    newTag: 0.0.1
 
 
 replacements:
@@ -37,6 +37,4 @@ replacements:
           labelSelector: 'type=api'
         fieldPaths:
           - spec.rules.*.host
-
-
 

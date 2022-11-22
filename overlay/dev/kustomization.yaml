@@ -4,33 +4,18 @@ resources:
 
 namespace: dev
 
-# configMapGenerator:
-#   - name: env
-#     behavior: replace
-#     literals:
-#       - domain=dev.aam.com
-
-# patchesStrategicMerge:
-#   - frontend-deployment-patch.yaml
-  # - backend-deployment-patch.yaml
-  # - backend-service-patch.yaml
-  # - frontend-service-patch.yaml
-# add dev label to all resources
 commonLabels:
   env: dev
 
 # define latest images to be used in this env
 images:
-  - name: trnproj1.azurecr.io/backend@sha256
-    # newName: amr158/argocd-demo-backend
-    newName: dockre/argocd-demo-backend
-    newTag: 0.0.1
-    # newTag: 0.0.0
-    # newName: mcr.microsoft.com/dotnet/samples
-    # newTag: aspnetapp
-  - name: trnproj1.azurecr.io/frontend@sha256
+  - name: aam/frontend
     newName: amr158/argocd-demo-frontend
     newTag: 0.4.0
+
+  - name: aam/backend
+    newName: dockre/argocd-demo-backend
+    newTag: 0.0.3
 
 
 replacements:
@@ -52,24 +37,3 @@ replacements:
           labelSelector: 'type=api'
         fieldPaths:
           - spec.rules.*.host
-
-
-
-# patches:
-#   - target:
-#       kind: Ingress
-#       group: api
-#       # annotations.type: api
-#     patch: |-
-#       - op: add
-#         path: /spec/rules/0/host
-#         value: 'dev.aam.localhost'
-
-
-
-
-
-# patchesStrategicMerge:
-# - ingress-patch.yaml
-
-# patchesJson6902:
