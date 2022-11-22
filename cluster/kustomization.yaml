@@ -5,7 +5,8 @@ resources:
   - application-tick-stack.yaml
   - application-apps-dev.yaml
   - application-apps-test.yaml
-  - application-apps-stg.yaml
+
+
   # - ingress-all.yaml
 
   # - applicaiton-prometheus.yaml
